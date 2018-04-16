@@ -3,7 +3,7 @@
 Plugin Name: Hot Sheet
 Plugin URI: http://www.allendav.com/
 Description: Hot Sheet provides a WordPress widget that can display a list of posts until their expiration date.  Also useful for a list of upcoming events.  To add a post to the Hot Sheet, simply set a date in the Hot Sheet options for the post.  To leave a post off of the Hot Sheet, leave the date empty.
-Version: 1.1.1
+Version: 1.2.0
 Author: allendav, Designgeneers
 Author URI: http://www.allendav.com
 License: GPL2
@@ -27,7 +27,7 @@ License: GPL2
 
 
 function hotsheet_add_meta_box() {
-    add_meta_box( 'hotsheet_sectionid', __( 'Hot Sheet' ), 'hotsheet_meta_box', 'post', 'side', 'high' );
+	add_meta_box( 'hotsheet_sectionid', __( 'Hot Sheet' ), 'hotsheet_meta_box', 'post', 'side', 'high' );
 }
 add_action( 'add_meta_boxes', 'hotsheet_add_meta_box' );
 
@@ -40,7 +40,7 @@ function hotsheet_meta_box( $post ) {
 	}
 
 	echo esc_html__( 'Feature this post until' );
-  echo '<br><br>';
+	echo '<br><br>';
 	echo '<input type="text" id="_hotsheet_date" name="_hotsheet_date" value="' . esc_attr( $hot_sheet_date ) . '" size="10" maxlength="10" />';
 	echo '<br><br>';
 	echo esc_html__( 'Enter date in the form m/d/yyyy.  Leave empty to leave this post off the Hot Sheet.' );
@@ -75,12 +75,12 @@ function hotsheet_save_postdata( $post_id ) {
 		// Dates in the m/d/y or d-m-y formats are disambiguated by strtotime by looking at the separator
 		// between the various components: if the separator is a slash (/), then the American m/d/y is assumed;
 		// whereas if the separator is a dash (-) or a dot (.), then the European d-m-y format is assumed.
-    $timestamp = strtotime( $hot_sheet_date );
+		$timestamp = strtotime( $hot_sheet_date );
 		if ( $timestamp ) {
 			update_post_meta( $post_id, '_hotsheet_date', $timestamp );
 		} else {
-      delete_post_meta( $post_id, '_hotsheet_date' );
-    }
+			delete_post_meta( $post_id, '_hotsheet_date' );
+		}
 	}
 
 	return $post_id;
@@ -205,3 +205,14 @@ function hot_sheet_init()
 }
 
 add_action( 'widgets_init', 'hot_sheet_init' );
+
+function hot_sheet_add_privacy_declarations() {
+	if ( function_exists( 'wp_add_privacy_policy_content' ) ) {
+		wp_add_privacy_policy_content(
+			__( 'Hot Sheet' ),
+			__( 'This plugin does not track users by any means and does not collect, access, retain or share any personal data.' )
+		);
+	}
+}
+
+add_action( 'admin_init', 'hot_sheet_add_privacy_declarations' );

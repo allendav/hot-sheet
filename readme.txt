@@ -5,11 +5,11 @@ Tags: event, calendar, events, hot sheet, upcoming, featured
 Requires at least: 4.0
 Tested up to: 4.9.5
 Requires PHP: 5.2.4
-Stable tag: 1.1.1
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Hot Sheet allows you to feature posts in your sidebar up to an specific date.  
+Hot Sheet allows you to feature posts in your sidebar up to an specific date.
 
 == Description ==
 
@@ -39,6 +39,9 @@ To remove a post from the Hot Sheet before it expires, simply clear the Hot Shee
 
 == Changelog ==
 
+= 1.2.0 =
+* Add privacy declarations to plugin
+
 = 1.1.1 =
 * Updated widget registration to latest standard, widget works again now
 * Updated to coding standards
@@ -55,6 +58,9 @@ To remove a post from the Hot Sheet before it expires, simply clear the Hot Shee
 
 == Upgrade Notice ==
 
+= 1.2.0 =
+* Add privacy declarations to plugin
+
 = 1.1.1 =
 * Updated widget registration to latest standard, widget works again now
 * Updated to coding standards
@@ -68,4 +74,3 @@ To remove a post from the Hot Sheet before it expires, simply clear the Hot Shee
 
 = 1.0.4 =
 Initial release
-
